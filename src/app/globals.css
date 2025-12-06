@@ -59,7 +59,7 @@
   }
 
   body {
-    @apply font-body bg-whiteish text-rendering-optimizeLegibility;
+    @apply font-body bg-whiteish rendering-legibility;
     height: 100vh;
     width: 100vw;
   }

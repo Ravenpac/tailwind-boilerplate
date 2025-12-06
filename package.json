@@ -27,6 +27,7 @@
     "react-paginate": "^8.2.0",
     "react-select": "^5.8.3",
     "tailwind-merge": "^2.5.5",
+    "tailwindcss-text-rendering": "^1.0.2",
     "yup": "^1.4.0"
   },
   "devDependencies": {

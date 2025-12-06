@@ -37,7 +37,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-text-rendering')],
 };
 
 export default config;

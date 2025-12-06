@@ -1,0 +1,51 @@
+{
+  "name": "placeholder-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@iconify/react": "^5.0.2",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-tooltip": "^1.1.4",
+    "@svgr/webpack": "^8.1.0",
+    "@tanstack/react-query": "^4.36.1",
+    "axios": "^1.7.9",
+    "clsx": "^2.1.1",
+    "cpf-cnpj-validator": "^1.0.3",
+    "date-fns": "^4.1.0",
+    "next": "15.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.54.0",
+    "react-icons": "^5.3.0",
+    "react-paginate": "^8.2.0",
+    "react-select": "^5.8.3",
+    "tailwind-merge": "^2.5.5",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
+  }
+}

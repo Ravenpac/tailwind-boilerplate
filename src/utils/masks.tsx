@@ -134,12 +134,17 @@ export const unmaskCurrency = (value: string) => {
 };
 
 export const maskCurrency = (value: string) => {
+  if (!value || value.trim() === '') {
+    return '';
+  }
+
   const valueFormatted = unmaskCurrency(value);
 
   const masked = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(valueFormatted);
+
   return masked;
 };
 

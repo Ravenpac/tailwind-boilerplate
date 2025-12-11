@@ -41,8 +41,8 @@ const ErrorModal = ({
       >
         <header className="flex max-h-14 min-h-14 w-full items-center justify-center gap-2 rounded-t-lg border-b border-[rgba(89,90,91,0.1)]">
           <Image
-            src="/img/modal/success.svg"
-            alt="Ícone de sucesso"
+            src="/img/modal/error.svg"
+            alt="Ícone de erro"
             width={24}
             height={24}
             className="h-auto w-6"

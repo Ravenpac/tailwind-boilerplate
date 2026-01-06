@@ -1,5 +1,5 @@
 import { baseURL } from '@/services/api';
-import { parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 export const unMask = (value: string) => {
   return value?.replace(/\D/g, '');
@@ -28,15 +28,23 @@ export const maskCEP = (cep: string) => {
 };
 
 export const maskPhone = (value: string) => {
-  if (value.length > 10) {
-    return value
-      ?.replace(/[^0-9]/g, '')
-      .replace(/^(\d{2})(\d{5})(\d{4})$.*/, '($1) $2-$3');
+  if (!value) return '';
+
+  const digits = value.replace(/\D/g, '');
+
+  if (digits.length <= 2) {
+    return digits;
   }
 
-  return value
-    ?.replace(/[^0-9]/g, '')
-    .replace(/^(\d{2})(\d{4})(\d{4})$.*/, '($1) $2-$3');
+  if (digits.length <= 6) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  }
+
+  if (digits.length <= 10) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  }
+
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
 };
 
 export const maskCPF = (value: string) => {
@@ -174,4 +182,14 @@ export const maskLetters = (value: string) => {
 
 export const maskPhotoUrl = (url: string) => {
   return `${baseURL?.replace('/api', '')}${url}`;
+};
+
+export const formatParseISOMask = (date: string) => {
+  if (!date) return '';
+
+  const parsedISO = parseISO(date);
+
+  const formattedDate = format(parsedISO, 'dd/MM/yyyy');
+
+  return formattedDate;
 };

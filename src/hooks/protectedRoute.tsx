@@ -3,17 +3,23 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useAuth } from './useAuth';
+import Loading from '@/components/Loading/Loading';
 
 const protectedRoute = (Component: React.FC) => {
   return (props: any) => {
     const router = useRouter();
-    const { isAuthenticated } = useAuth();
+
+    const { isAuthenticated, isLoading } = useAuth();
 
     useEffect(() => {
-      if (!isAuthenticated) {
-        router.push('/login');
+      if (!isLoading && !isAuthenticated) {
+        router.push('/');
       }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, isLoading, router]);
+
+    if (isLoading) {
+      return <Loading />;
+    }
 
     if (!isAuthenticated) {
       return null;

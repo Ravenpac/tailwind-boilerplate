@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-
 'use client';
 
 import React, {
@@ -30,6 +28,8 @@ export interface User {
   updatedAt: string;
   publishedAt: string;
   rejectionReason: string;
+  acceptedTerms: boolean;
+  acceptedDate: string;
 }
 
 interface IUserProvider {
@@ -37,6 +37,7 @@ interface IUserProvider {
   setUser: React.Dispatch<SetStateAction<User>>;
   isAuthenticated: boolean;
   logout: () => void;
+  isLoading: boolean;
 }
 
 interface ChildrenProps {
@@ -47,18 +48,21 @@ const AuthContext = createContext({} as IUserProvider);
 
 const AuthProvider = ({ children }: ChildrenProps) => {
   const [user, setUser] = useState<User>({} as User);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const dataUser = localStorage.getItem('@Placeholder:user');
 
     if (dataUser) {
-      const parsedUser = JSON.parse(dataUser);
-
-      setUser(parsedUser);
+      try {
+        const parsedUser = JSON.parse(dataUser);
+        setUser(parsedUser);
+      } catch (error) {
+        localStorage.removeItem('@Placeholder:user');
+      }
     }
 
-    setLoading(false);
+    setIsLoading(false);
   }, []);
 
   const isAuthenticated = user.id !== undefined;
@@ -68,13 +72,10 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     setUser({} as User);
   };
 
-  if (loading) {
-    return null;
-  }
-
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <AuthContext.Provider value={{ user, setUser, isAuthenticated, logout }}>
+    <AuthContext.Provider
+      value={{ user, setUser, isAuthenticated, logout, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );

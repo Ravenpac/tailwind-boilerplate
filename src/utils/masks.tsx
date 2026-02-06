@@ -6,11 +6,13 @@ export const unMask = (value: string) => {
 };
 
 export const maskNumber = (value: string) => {
-  return value?.replace(/\D/g, '');
+  return unMask(value);
 };
 
 export const maskCNPJ = (value: string) => {
-  return value
+  const unmasked = unMask(value);
+
+  return unmasked
     ?.replace(/^(\d{2})(\d)/, '$1.$2')
     .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
     .replace(/\.(\d{3})(\d)/, '.$1/$2')
@@ -18,7 +20,8 @@ export const maskCNPJ = (value: string) => {
 };
 
 export const maskCEP = (cep: string) => {
-  cep = cep.replace(/\D/g, '');
+  cep = unMask(cep);
+
   const match = cep.match(/^(\d{1,5})(\d{0,3})$/);
   if (match) {
     cep = `${match[1]}${match[2] ? '-' : ''}${match[2]}`;
@@ -30,7 +33,7 @@ export const maskCEP = (cep: string) => {
 export const maskPhone = (value: string) => {
   if (!value) return '';
 
-  const digits = value.replace(/\D/g, '');
+  const digits = unMask(value);
 
   if (digits.length <= 2) {
     return digits;
@@ -48,18 +51,21 @@ export const maskPhone = (value: string) => {
 };
 
 export const maskCPF = (value: string) => {
-  return value
+  const unmasked = unMask(value);
+
+  return unmasked
     ?.replace(/^(\d{3})(\d)/, '$1.$2')
     .replace(/^(\d{3}).(\d{3})(\d)/, '$1.$2.$3')
     .replace(/.(\d{3})(\d)/, '.$1-$2');
 };
 
 export const maskRG = (value: string) => {
-  return value
-    ?.replace(/\D/g, '')
-    .replace(/^(\d{2})(\d)/, '$1.$2')
-    .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
-    .replace(/.(\d{3})(\d)/, '.$1-$2');
+  const rg = unMask(value);
+
+  return rg
+    ?.replace(/^(\d{2})(\d)/, '$1.$2')
+    ?.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+    ?.replace(/.(\d{3})(\d)/, '.$1-$2');
 };
 
 export const cardDateMask = (value: string) => {

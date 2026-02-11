@@ -6,6 +6,10 @@ export const unMask = (value: string) => {
 };
 
 export const maskNumber = (value: string) => {
+  if (/^0\d/.test(value)) {
+    value = value.replace(/^0+/, '');
+  }
+
   return unMask(value);
 };
 
